@@ -1,3 +1,38 @@
 syntax = "proto3";
 
 package auth;
+
+option go_package = "github.com/gznrf/quizometrix_auth_proto";
+
+service Auth{
+    rpc PreRegister (PreRegisterRequest) returns (PreRegisterResponse);
+    rpc Register (RegisterRequest) returns (RegisterResponse);
+    rpc Login (LoginRequest) returns (LoginRequest);
+}
+
+message PreRegisterRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message PreRegisterResponse {
+    int32 user_id = 1;
+}
+
+message RegisterRequest {
+    bytes avatar = 1;
+    string nickname = 2;
+}
+
+message RegisterResponse {
+    int32 user_id = 1;
+}
+
+message LoginRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message LoginResponse {
+    string token = 1;
+}
